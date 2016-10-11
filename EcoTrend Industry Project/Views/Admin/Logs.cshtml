@@ -1,0 +1,75 @@
+﻿@model IEnumerable<EcoTrend_Industry_Project.ViewModels.LogContactVM>
+
+@{
+    ViewBag.Title = "Notes";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Notes</h2>
+<div class="table-responsive">
+    <table id="table_id" class="display cell-border">
+        <thead>
+            <tr>
+                <th>
+                    Date Posted
+                </th>
+                <th>
+                    Logged By:
+                </th>
+
+                <th>
+                    Title
+                </th>
+                <th>
+                    Message
+                </th>
+                <th>
+                    Store Name
+                </th>
+                <th>
+                    Contact ID
+                </th>
+                <th>
+                    Contact Name
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.logDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.salesRepName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.body)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.storeName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.contactID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.contactName)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("EditLog", "Admin", new { id = item.logID })"><span class="glyphicon glyphicon-pencil"></span></a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("DeleteLog", "Admin", new { id = item.logID})"><span class="glyphicon glyphicon-trash"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "EditContact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    input {
+        max-width: 100%;
+    }
+
+    textarea {
+        max-width: 100%;
+    }
+</style>
+
+<h2>Edit Contact</h2>
+
+<div class="row">
+    @using (Html.BeginForm("EditContact", "SalesRep"))
+    {
+        <div class="hidden-xs hidden-sm col-md-6 col-lg-6">
+
+
+            <br />
+            <label for="department">Department Title</label>
+            <button type="button" class="btn btn-info" data-toggle="popover" data-trigger="focus" title="Prototype Hint (To be Removed later)" data-content="Type 'success' in Department Title to successfully update contact. Type anything else or nothing to unsuccessfully update contact.">Click me</button>
+            <br />
+            <input class="form-control" type="text" id="department" name="department" placeholder="Holistic Foods Buyer" />
+            <br /><br />
+            <label for="firstname">First Name</label><br />
+            <input class="form-control" type="text" placeholder="Susan" name="firstname" id="firstname" />
+            <br /><br />
+            <label for="lastname">Last Name</label><br />
+            <input class="form-control" type="text" placeholder="James" name="lastname" id="lastname" />
+            <br /><br />
+            <label for="email">Email Address</label><br />
+            <input class="form-control" type="text" placeholder="susan.james@clearwaterfoods.ca" name="email" id="email" />
+            <br />
+
+
+            <button class="btn btn-block btn-primary" type="submit">Update Contact</button>
+
+        </div>
+
+    }

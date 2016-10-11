@@ -1,0 +1,211 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/sidebar.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/scripts/modernizr-2.8.3.js"></script>
+    <link rel="stylesheet" href="~/font-awesome/css/font-awesome.min.css">
+    @RenderSection("style", required: false)
+</head>
+<body>
+    <div class="row">
+        <!-- uncomment code for absolute positioning tweek see top comment in css -->
+        <!-- <div class="absolute-wrapper"> </div> -->
+        <!-- Menu -->
+        <div class="side-menu">
+
+            <nav class="navbar navbar-default" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <div class="brand-wrapper">
+                        <!-- Hamburger -->
+                        <button type="button" class="navbar-toggle">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                        <!-- Brand -->
+                        <div class="brand-name-wrapper">
+                            <a class="navbar-brand">
+                                Ecotrend Contact Manager
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Main Menu -->
+                <div class="side-menu-container">
+                    <ul class="nav navbar-nav">
+
+                        <li class="panel panel-default" id="dropdown">
+                            <a data-toggle="collapse" href="#salesrep-submenu">
+                                <span class="glyphicon glyphicon-user"></span> Sales Representatives <span class="caret"></span>
+                            </a>
+
+                            <div id="salesrep-submenu" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li class="sub-item">
+                                            <a href="@Url.Action("ListSalesReps", "Admin")">
+                                                <span class="glyphicon glyphicon-eye-open"></span> View
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("AddSalesRep", "Admin")">
+                                                <span class="glyphicon glyphicon-plus"></span> Add
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="panel panel-default" id="dropdown">
+                            <a data-toggle="collapse" href="#contact-submenu">
+                                <span class="glyphicon glyphicon-user"></span> Contacts <span class="caret"></span>
+                            </a>
+
+                            <div id="contact-submenu" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li>
+                                            <a href="@Url.Action("ContactManagement", "Home")">
+                                                <span class="glyphicon glyphicon-eye-open"></span> View
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("AddContact", "SalesRep")">
+                                                <span class="glyphicon glyphicon-plus"></span> Add
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="panel panel-default" id="dropdown">
+                            <a data-toggle="collapse" href="#log-submenu">
+                                <span class="fa fa-sticky-note"></span> Logs <span class="caret"></span>
+                            </a>
+
+                            <div id="log-submenu" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li>
+                                            <a href="@Url.Action("Logs", "Admin")">
+                                                <span class="glyphicon glyphicon-eye-open"></span> View
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="panel panel-default" id="dropdown">
+                            <a data-toggle="collapse" href="#userroles-submenu">
+                                <span class="glyphicon glyphicon-user"></span> Users and Roles <span class="caret"></span>
+                            </a>
+
+                            <div id="userroles-submenu" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li>
+                                            <a href="@Url.Action("AddRole", "Admin")">
+                                                <span class="glyphicon glyphicon-plus"></span> Add Role
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("AddUserToRole", "Admin")">
+                                                <span class="glyphicon glyphicon-plus"></span> Add User to Role
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <li class="panel panel-default" id="dropdown">
+                            <a data-toggle="collapse" href="#email-submenu">
+                                <span class="fa fa-envelope"></span> Email <span class="caret"></span>
+                            </a>
+
+                            <div id="email-submenu" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="nav navbar-nav">
+                                        <li>
+                                            <a href="@Url.Action("EmailAllSubscribed", "Admin")">
+                                                <span class="fa fa-paper-plane"></span><span class="fa fa-users"></span> Email All
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("EmailBySalesRep", "Admin")">
+                                                <span class="fa fa-paper-plane"></span><span class="fa fa-list"></span> Email By Lists
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="panel panel-default" id="dropdown">
+                            <a href="@Url.Action("Logout", "Account", null)">
+                                <span class="glyphicon glyphicon-off"></span> Log Out
+                            </a>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </nav>
+
+        </div>
+
+        <!-- Main Content -->
+        <div class="container-fluid">
+            <div class="side-body">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <!--SCRIPTS-->
+    <script src="~/scripts/jquery-2.2.3.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            $('.navbar-toggle').click(function () {
+                $('.navbar-nav').toggleClass('slide-in');
+                $('.side-body').toggleClass('body-slide-in');
+                $('#search').removeClass('in').addClass('collapse').slideUp(200);
+
+                /// uncomment code for absolute positioning tweek see top comment in css
+                //$('.absolute-wrapper').toggleClass('slide-in');
+
+            });
+
+            // Remove menu for searching
+            $('#search-trigger').click(function () {
+                $('.navbar-nav').removeClass('slide-in');
+                $('.side-body').removeClass('body-slide-in');
+
+                /// uncomment code for absolute positioning tweek see top comment in css
+                //$('.absolute-wrapper').removeClass('slide-in');
+
+            });
+        });
+
+        $('[data-toggle="popover"]').popover();
+    </script>
+    @RenderSection("script", required: false)
+</body>
+</html>

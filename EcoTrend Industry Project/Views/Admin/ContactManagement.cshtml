@@ -1,0 +1,126 @@
+﻿@*@model IEnumerable<EcoTrend_Industry_Project.Contact>*@
+
+
+@model PagedList.IPagedList<EcoTrend_Industry_Project.ViewModels.ContactVM>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Contact Management Area";
+    if (User.Identity.IsAuthenticated)
+    {
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
+
+}
+<h2>Contact Management Area</h2>
+@Html.ActionLink("Get All Emails", "GetContactEmails", "Home")
+<br /><br />
+@using (Html.BeginForm())
+{
+    <div class="col-md-6">
+        @Html.TextBox("SearchString", null, new { @class = "form-control", placeholder = "Search by first name or last name" })
+    </div>
+    <div class="col-md-6">
+        <input type="submit" value="Search" class="btn btn-default" />
+    </div>
+        <br /><br /><br />
+}
+
+<table class="table">
+    <tr>
+        <th class="hidden-sm hidden-xs">
+            @*@Html.DisplayNameFor(model => model.contactID)*@
+            Contact ID
+        </th>
+        <th>
+            @*@Html.ActionLink("Company", "ContactManagement", new { sortOrder = ViewBag.DateSortParm })*@
+            @* @Html.DisplayNameFor(model => model.Store.shortName)*@
+            Store Name
+        </th>
+        <th class="hidden-sm hidden-xs">
+            @*@Html.DisplayNameFor(model => model.branch)*@
+            Department
+        </th>
+        <th>
+            @Html.ActionLink("First Name", "ContactManagement", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+
+        <th>
+            @Html.ActionLink("Last Name", "ContactManagement", new { sortOrder = ViewBag.NameSortParm })
+
+        </th>
+
+        <th>
+            @*@Html.DisplayNameFor(model => model.email)*@
+            Email
+        </th>
+        <th>
+            @* @Html.DisplayNameFor(model => model.telephone)*@
+            Telephone
+        </th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (var thing in Model)
+    {
+        <tr>
+            <td class="hidden-sm hidden-xs">
+                @Html.DisplayFor(modelItem => thing.ContactID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => thing.StoreName)
+            </td>
+            <td class="hidden-sm hidden-xs">
+                @Html.DisplayFor(modelItem => thing.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => thing.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => thing.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => thing.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => thing.Telephone)
+            </td>
+
+            <td>
+                <a href="@Url.Action("EditContact", "Admin", new { id = thing.ContactID})" title="Edit Contact">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+                <span>|</span>
+                <a href="@Url.Action("ContactNotes", "Admin", new { salesRepID = thing.SalesRepID, contactId = thing.ContactID, firstName = thing.FirstName, lastName = thing.LastName} )">
+                    <span class="glyphicon glyphicon-list-alt" title="View Notes">
+                    </span>
+                </a>
+                <span>|</span>
+                <a href="@Url.Action("AddNote", "Admin", new { contactId = thing.ContactID, firstName = thing.FirstName, lastName = thing.LastName })">
+                    <span class="glyphicon glyphicon-plus" title="Add Note"></span>
+                </a>
+            </td>
+        </tr>
+    }
+</table>
+
+@{
+    if (User.IsInRole("admin"))
+    {
+        <form method="get" action="/Admin/CreateContact">
+            <input id="Submit1" type="submit" value="Add Contact" class="btn btn-default pull-right" />
+        </form>
+    }
+    else if (User.IsInRole("salesrep"))
+    {
+        @Html.ActionLink("Add Contact", "AddContact", "Admin", null, new { @class = "btn btn-primary" })
+    }
+}
+
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("ContactManagement",
+new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+

@@ -1,0 +1,20 @@
+﻿@model EcoTrend_Industry_Project.Log
+
+@{
+    ViewBag.Title = "AddNote";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Note for @ViewBag.FirstName @ViewBag.LastName</h2>
+
+@using (Html.BeginForm())
+{
+    <input type="hidden" value="@ViewBag.SalesRepID" name="salesRepID" data-parsley-validate />
+    <input type="hidden" value="@ViewBag.ContactId" name="contactID" data-parsley-validate/>
+
+    <label>Title</label><br />
+    <input type="text" name="title" required data-parsley-errors-messages-disabled/><br />
+    <label>Body</label><br />
+    <textarea name="body" required data-parsley-errors-messages-disabled></textarea><br />
+    <input type="submit" value="Add Log" />
+}

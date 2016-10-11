@@ -1,0 +1,99 @@
+﻿@model IEnumerable<EcoTrend_Industry_Project.ViewModels.SalesRepVM>
+
+@{
+    ViewBag.Title = "Choose Contacts";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Choose Contacts</h2>
+<hr />
+<p>
+    <i>* Select at least one contact</i>
+</p>
+<div class="col-md-8">
+    @using (Html.BeginForm("ChooseContacts", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        <table class="table">
+            <tr>
+                <th style="text-align:center;width:150px;">
+                    <a id="select" class="btn btn-default" onclick="toggle(this)">Select All</a>
+                    <input type="hidden" value="open" id="hiddenInput" />
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SalesRepID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Branch)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+        {
+        <tr>
+            <td style="text-align:center">
+                <input type="checkbox" name="emails" value="@item.Email" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalesRepID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Branch)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+        </tr>
+        }
+
+        </table>
+        
+        <input type="submit" class="btn btn-success pull-right" value="Send Email" />
+    }
+    @{
+        if (ViewBag.Success != null)
+        {
+            <div style="text-align:center">
+                <span class="alert alert-success">@Html.Raw(ViewBag.Success)</span>
+            </div>
+        }
+        else if (ViewBag.Error != null)
+        {
+            <div style="text-align:center">
+                <span class="alert alert-danger">@Html.Raw(ViewBag.Error)</span>
+            </div>
+        }
+    }
+</div>
+@section script{
+    <script>
+        function toggle(source) {
+            checkboxes = document.getElementsByName('emails');
+            select = document.getElementById('select');
+            hiddenInput = document.getElementById('hiddenInput');
+            if (hiddenInput.value == "open") {
+                select.innerHTML = "Unselect All";
+                hiddenInput.value = "close";
+                for (var i = 0, n = checkboxes.length; i < n; i++) {
+                    checkboxes[i].checked = true
+                }
+            }
+            else {
+                select.innerHTML = "Select All";
+                hiddenInput.value = "open";
+                for (var i = 0, n = checkboxes.length; i < n; i++) {
+                    checkboxes[i].checked = false
+                }
+            }
+        }
+    </script>
+}

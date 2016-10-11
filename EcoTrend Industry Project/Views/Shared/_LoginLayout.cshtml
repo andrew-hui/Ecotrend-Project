@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/login.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/font-awesome/css/font-awesome.min.css">
+    <link href="~/Content/parsley.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-2.2.3.js"></script>
+
+    @RenderSection("style", required: false)
+</head>
+<body>
+    <div class="wrapper">
+        @RenderBody()
+
+        <div id="footer">
+            <hr />
+            <div class="col-xs-4">
+                <a class="pull-right" href="https://docs.google.com/document/d/1zBHzkj4NJoFnMKanyh8mS0iUqjHmLyreZSItoXQX17M/edit?usp=sharing" target="_blank">
+                    <span class="glyphicon glyphicon-new-window"></span>
+                    Design Documents
+                </a>
+            </div>
+            <div class="col-xs-4">
+                |
+            </div>
+            <div class="col-xs-4">
+                <div class="pull-left">
+                    Last Updated: 2016-05-10 2:10AM
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/scripts/parsley.min.js"></script>
+    <script src="~/scripts/modernizr-2.8.3.js"></script>
+    <script src="~/scripts/jquery-2.2.3.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("script", required: false)
+</body>
+</html>

@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Send Email By Sales Representative";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    input {
+        max-width: 100%;
+    }
+
+    textarea {
+        max-width: 100%;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Email Contacts by Representative</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div style="display: inline-block">
+            <br />
+            <input id="search" name="search" class="input input-sm" placeholder="Sale Representative Name" value="James Pekoe" type="text" size=45 />
+            <button class="btn btn-primary">Search</button>
+            <br /><br /><br />
+        </div>
+
+        <table class="table table-hover">
+            <tr>
+                <th></th>
+                <th>Sales ID</th>
+                <th>Branch</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+            </tr>
+            <tr>
+                <th><input type="checkbox" checked="checked" /></th>
+                <td>0101350</td>
+                <td>BC</td>
+                <td>James</td>
+                <td>Pekoe</td>
+            </tr>
+        </table>
+
+        <form>
+            <div class="form-group">
+                <label for="email_subject">Email Subject</label>
+                <input type="text" class="form-control" id="email_subject" name="subject_email" />
+            </div>
+            <div class="form-group">
+                <label for="email_body">Email Body</label>
+                <textarea type="password" class="form-control" id="email_body"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary form-control">Send Email</button>
+        </form>
+    </div>
+</div>
+

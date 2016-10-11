@@ -1,0 +1,64 @@
+﻿@model IEnumerable<EcoTrend_Industry_Project.ViewModels.NotesVM>
+
+@{
+    ViewBag.Title = "ContactNotes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Notes for @ViewBag.FirstName @ViewBag.LastName</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NoteID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoteDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Body)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StoreName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoteID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoteDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Body)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StoreName)
+        </td>
+    </tr>
+}
+
+</table>
+
+@Html.ActionLink("Add Note", "AddNote", "SalesRep", new { contactId = ViewBag.ContactId, firstName = ViewBag.FirstName, lastName = ViewBag.LastName}, new { @class = "btn btn-default" })

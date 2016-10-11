@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/scripts/modernizr-2.8.3.js"></script>
+    <link rel="stylesheet" href="~/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/animate.css">
+    <link href="~/Content/parsley.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-2.2.3.js"></script>
+    @RenderSection("style", required: false)
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @{
+                    if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                    {
+                        <a class="navbar-brand" href="@Url.Action("AdminOnly", "Admin")">Ecotrend Contact Manager</a>
+                    }
+                    else if (User.Identity.IsAuthenticated && User.IsInRole("salesrep"))
+                    {
+                        <a class="navbar-brand" href="@Url.Action("ContactManagement", "Home")">Ecotrend Contact Manager</a>
+                    }
+                    else if (User.Identity.IsAuthenticated && User.IsInRole("supplier"))
+                    {
+                        <a class="navbar-brand" href="@Url.Action("Index", "Suppliers")">Ecotrend Contact Manager</a>
+                    }
+                    else {
+                        <a class="navbar-brand" href="@Url.Action("Index", "Home")">Ecotrend Contact Manager</a>
+                    }
+                }
+
+
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Last Updated: 2016-05-10 12:10PM</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="https://docs.google.com/document/d/1zBHzkj4NJoFnMKanyh8mS0iUqjHmLyreZSItoXQX17M/edit?usp=sharing" target="_blank">
+                            <span class="glyphicon glyphicon-new-window"></span>
+                            Design Documents
+                        </a>
+                    </li>
+                    @{
+                        if (!User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                <a href="@Url.Action("Index", "Home")">
+                                    <span class="glyphicon glyphicon-log-in"></span>
+                                    Log in
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Register", "Account")">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                    Register
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            if (User.IsInRole("salesrep"))
+                            {
+                                <li>
+                                    <a href="@Url.Action("SendGroupEmail", "SalesRep")">
+                                        <span class="fa fa-envelope-o" aria-hidden="true"></span>
+                                        Send Group Email
+                                    </a>
+                                </li>
+                            }
+                            <li>
+                                <a href="@Url.Action("Logout", "Account")">
+                                    <span class="glyphicon glyphicon-log-out"></span>
+                                    Log out
+                                </a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Ecotrend Contact Manager</p>
+        </footer>
+    </div>
+
+    <script src="~/scripts/parsley.min.js"></script>
+    <script src="~/scripts/jquery-2.2.3.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        $('[data-toggle="popover"]').popover();
+    </script>
+    @RenderSection("script", required: false)
+
+</body>
+</html>

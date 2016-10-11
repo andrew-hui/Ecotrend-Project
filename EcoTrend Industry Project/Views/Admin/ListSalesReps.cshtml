@@ -1,0 +1,47 @@
+﻿@model IEnumerable<EcoTrend_Industry_Project.ViewModels.SalesRepVM>
+
+@{
+    ViewBag.Title = "View All Sales Reps";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Sales Representatives Directory</h2>
+<hr />
+<div style="overflow-x:auto;">
+    <table id="table_id" class="display cell-border">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.SalesRepID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Branch)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SalesRepID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Branch)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <a href="../Admin/EditSalesRep?salesRepID=@Html.DisplayFor(modelItem => item.SalesRepID)">Edit <span class="glyphicon glyphicon-pencil" title="Edit"></span></a> |
+                        <a href="../Admin/SalesRepDetails?salesRepID=@Html.DisplayFor(modelItem => item.SalesRepID)">View <span class="glyphicon glyphicon-list-alt" title="View"></span></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+

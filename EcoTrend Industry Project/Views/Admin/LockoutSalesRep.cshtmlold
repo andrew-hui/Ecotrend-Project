@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Lockout Sales Reps";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Lockout Sales Representative Accounts</h2>
+<hr />
+<div class="col-md-6">
+    <div class="col-md-6">
+        <input type="text" placeholder="Employee ID or Name" class="form-control" />
+    </div>
+    <div class="col-md-6">
+        <input type="submit" value="Search" class="btn btn-default"/>
+    </div>
+</div>
+<br /><br /><br />
+<table class="table table-striped">
+    <tr>
+        <th>Status</th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Branch</th>
+    </tr>
+    <tr>
+        <td>Active</td>
+        <td>984</td>
+        <td>John Smith</td>
+        <td>CA</td>
+    </tr>
+    <tr>
+        <td>Inactive</td>
+        <td>845</td>
+        <td>Charles Barkley</td>
+        <td>CA</td>
+    </tr>
+    <tr>
+        <td>Active</td>
+        <td>142</td>
+        <td>Henry Lee</td>
+        <td>CA</td>
+    </tr>
+</table>

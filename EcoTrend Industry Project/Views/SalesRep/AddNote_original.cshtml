@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Add Notes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    input {
+        max-width: 100%;
+    }
+
+    textarea {
+        max-width: 100%;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Contact Management Area</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div style="display: inline-block">
+            </div>
+            <h3>Add Note for Susie Barbara</h3>
+            <div class="form-group-lg">
+                @using (Html.BeginForm("AddNote", "SalesRep")) {
+                    <label for="title">Title</label><button type="button" class="btn btn-info" data-toggle="popover" data-trigger="focus" title="Prototype Hint (To be Removed later)" data-content="Type 'success' in Title to successfully add note. Type anything else or nothing to unsuccessfully add note.">Click me</button>
+                    <input name="title" id="title" class="form-control" type="text" />
+                    <label for="body">Body</label>
+                    <textarea id="body" name="body" class="form-control" rows="6"> </textarea>
+
+                    <input type="submit" class="btn btn-primary btn-block" value="Add Note" />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "SendEmails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Send Group Email</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div style="display: inline-block">
+                <br />
+                <input id="search" name="search" class="input input-sm" placeholder="Company or Contact Name" value="Clearwater Natural Foods" type="text" size=45 />
+                <button class="btn btn-primary">Search</button>
+                <br /><br /><br />
+            </div>
+
+            <table class="table table-hover">
+                <tr>
+                    <th><input type="checkbox" checked="checked" /> &nbsp;&nbsp;&nbsp; Select All</th>
+                </tr>
+            </table>
+
+            <table class="table table-hover">
+                <tr>
+                    <th></th>
+                    <th>ID Number</th>
+                    <th>Company</th>
+                    <th>Branch</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone Number</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th><input type="checkbox" checked="checked" /></th>
+                    <td>0101350</td>
+                    <td><a href="../SalesRep/ListContactsByCompany">Clearwater Natural Foods</a></td>
+                    <td>BC</td>
+                    <td>Janey</td>
+                    <td>Bane</td>
+                    <td>778-610-4545</td>
+                    <td><a href="../SalesRep/EditContact"><span class="glyphicon glyphicon-pencil"></span> Edit Contact</a></td>
+                    <td><a href="../SalesRep/ContactNotes"><span class="glyphicon glyphicon-list-alt"></span> View Notes</a></td>
+                    <td><a href="../SalesRep/AddNote"><span class="glyphicon glyphicon-plus"></span> Add Note</a></td>
+                </tr>
+                <tr>
+                    <th><input type="checkbox" checked="checked" /></th>
+                    <td>0101350</td>
+                    <td><a href="../SalesRep/ListContactsByCompany">Clearwater Natural Foods</a></td>
+                    <td>BC</td>
+                    <td>Paul</td>
+                    <td>Gregens</td>
+                    <td>604-656-4472</td>
+                    <td><a href="../SalesRep/EditContact"><span class="glyphicon glyphicon-pencil"></span> Edit Contact</a></td>
+                    <td><a href="../SalesRep/ContactNotes"><span class="glyphicon glyphicon-list-alt"></span> View Notes</a></td>
+                    <td><a href="../SalesRep/AddNote"><span class="glyphicon glyphicon-plus"></span> Add Note</a></td>
+                </tr>
+                <tr>
+                    <th><input type="checkbox" checked="checked" /></th>
+                    <td>0101350</td>
+                    <td><a href="../SalesRep/ListContactsByCompany">Clearwater Natural Foods</a></td>
+                    <td>BC</td>
+                    <td>Jenny</td>
+                    <td>Paulson</td>
+                    <td>778-635-5456</td>
+                    <td><a href="../SalesRep/EditContact"><span class="glyphicon glyphicon-pencil"></span> Edit Contact</a></td>
+                    <td><a href="../SalesRep/ContactNotes"><span class="glyphicon glyphicon-list-alt"></span> View Notes</a></td>
+                    <td><a href="../SalesRep/AddNote"><span class="glyphicon glyphicon-plus"></span> Add Note</a></td>
+                </tr>
+            </table>
+
+            <form>
+                <div class="form-group">
+                    <label for="email_subject">Email Subject</label>
+                    <input type="text" class="form-control" id="email_subject" name="subject_email" placeholder="Email Subject" />
+                </div>
+                <div class="form-group">
+                    <label for="email_body">Email Body</label>
+                    <textarea type="password" class="form-control" id="email_body" placeholder="Email Body"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Email</button>
+            </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,127 @@
+IF OBJECT_ID('Logs', 'U')    
+IS NOT NULL DROP TABLE Logs;
+
+IF OBJECT_ID('SalesRepContact', 'U')
+IS NOT NULL DROP TABLE SalesRepContact;
+
+IF OBJECT_ID('Contact', 'U')    
+IS NOT NULL DROP TABLE Contact;
+
+IF OBJECT_ID('SalesRep', 'U')    
+IS NOT NULL DROP TABLE SalesRep;
+
+IF OBJECT_ID('Store', 'U')    
+IS NOT NULL DROP TABLE Store;
+
+IF OBJECT_ID('Email', 'U')
+IS NOT NULL DROP TABLE Email;
+
+IF OBJECT_ID('Supplier', 'U')
+IS NOT NULL DROP TABLE Supplier;
+
+CREATE TABLE Store
+(
+    storeID      INTEGER PRIMARY KEY,
+    shortName    VARCHAR(100),
+    name	     VARCHAR(100),
+	addressLine1  VARCHAR(100),
+	addressLine2  VARCHAR(100),
+	city     VARCHAR(100),
+	province VARCHAR(100),
+	country  VARCHAR(100),
+	postalCode VARCHAR(100)
+);
+
+CREATE TABLE SalesRep
+(
+    salesRepID      INTEGER PRIMARY KEY,
+	email		    VARCHAR(100),
+    branch          VARCHAR(100),
+    name	        VARCHAR(100),
+	contactID		INTEGER
+);
+
+CREATE TABLE Contact
+(
+    contactID    INTEGER IDENTITY(1,1) PRIMARY KEY,
+    firstName    VARCHAR(100),
+	lastName     VARCHAR(100),
+    email	     VARCHAR(100),
+	telephone    VARCHAR(50),
+	branch       VARCHAR(100),
+	department   VARCHAR(100),
+	salesRepID      INTEGER,    --actual FK attribute 
+	storeID			INTEGER, --actual FK attribute
+
+	FOREIGN KEY(storeID) REFERENCES Store(storeID), 
+);
+
+CREATE TABLE SalesRepContact
+(
+	salesRepID INTEGER,
+	contactID INTEGER,
+	PRIMARY KEY (salesRepID, contactID),
+
+	FOREIGN KEY(salesRepID) REFERENCES SalesRep(salesRepID),
+	FOREIGN KEY(contactID) REFERENCES Contact(contactID)
+);
+
+CREATE TABLE Logs
+(
+    logID  INTEGER IDENTITY(1,1) PRIMARY KEY,
+	title  VARCHAR(255),
+	logDate   DATETIME,
+	body    VARCHAR(MAX),
+	salesRepID  INTEGER,
+	salesRepName VARCHAR(255),
+	contactID   INTEGER, --actual FK attribute 
+
+	FOREIGN KEY(contactID)  REFERENCES Contact(contactID)
+);
+
+CREATE TABLE Supplier
+(
+    supplierID  INTEGER IDENTITY(1,1) PRIMARY KEY,
+	name        VARCHAR(100),
+	email		VARCHAR(100),
+	lockedOut   BIT
+);
+
+CREATE TABLE Email 
+(
+    emailID     INTEGER IDENTITY(1,1) PRIMARY KEY,
+	subject     VARCHAR(100),
+	body        VARCHAR(MAX),
+	attachment	VARBINARY(MAX),
+	dateCreated DATETIME,
+	dateSent    DATETIME,        
+	approved    BIT,
+	lockedOut   BIT,
+	supplierID  INTEGER,
+	FOREIGN KEY(supplierID) REFERENCES Supplier(supplierID),
+);
+
+
+INSERT INTO Store  VALUES(349, 'wpowell0', 'Whole Foods', '123 Dominic Street', null, 'Vancouver', 'BC', 'Canada', 'V6K2D3');
+INSERT INTO Store  VALUES(341, 'jroll0', 'Family Natural Health', '85 Florence Ave', null, 'New York City', 'NY', 'United States', '32153');
+INSERT INTO Store  VALUES(473, 'velmachio0', 'Holistic Central', '888 Franklin Street', 'Basement Suite', 'Pittsburgh', 'PY', 'United States', '56464');
+
+INSERT INTO SalesRep VALUES(1, 'jeffreyo@gmail.com', 'BC', 'Jeffrey Oklahoma')
+INSERT INTO SalesRep VALUES(2, 'willronson@foodshealth.com', 'AK', 'William Ronson')
+INSERT INTO SalesRep VALUES(3, 'bjornlarsen3@hotmail.com', 'BC', 'Bjorn Larsen')
+
+INSERT INTO Contact VALUES(349, 'Jamie', 'Chong', 'jchong@gmail.com', '778-548-5495', 'BC', 'Natural Foods', 1, 349)
+INSERT INTO Contact VALUES(55, 'Kaney', 'Johnson', 'kjohnson@gmail.com', '604-347-2323', 'BC', 'Holistic Medicine', 2, 341)
+INSERT INTO Contact VALUES(12, 'Frederick', 'Ronderez', 'froderez@freshfoods.com', '604-454-2234', 'BC', 'Alternative Naturopathic Medicine', 3, 473)
+
+SELECT * FROM Contact
+SELECT * FROM Store
+SELECT * FROM SalesRep
+
+SELECt * FROM AspNetUsers
+
+SELECT * FROM Supplier
+
+SELECT * FROM AspNetUsers
+
+SELECT * FROM Email

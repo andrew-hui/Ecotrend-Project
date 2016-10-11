@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Admin Privileges";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@section style{
+    <style>
+        label{
+            display:none;
+            width: 200px;
+        }
+    </style>
+}
+
+<h2>Admin Privileges</h2>
+
+<hr />
+<h3><span class="label label-default" id="header">Users and Roles</span></h3>
+<div class="list-group">
+    @Html.ActionLink("Add a role", "AddRole", "Admin", new { @class = "list-group-item" })
+    @Html.ActionLink("Add user to a role", "AddUserToRole", "Admin", new { @class = "list-group-item" })
+</div>
+<br />
+<h3><span class="label label-default">Sales Representatives</span></h3>
+<div class="list-group">
+
+    @Html.ActionLink("View", "ListSalesReps", "Admin", new { @class = "list-group-item" })
+    <a href="@Url.Action("AddSalesRep", "Admin")" class="list-group-item">
+        <span class="glyphicon glyphicon-plus"></span>
+    </a>
+
+</div>
+<br />
+<h3><span class="label label-default">Logs</span></h3>
+<div class="list-group">
+
+    @Html.ActionLink("View", "GetAllLogs", "Admin", new { @class = "list-group-item" })
+</div>
+<br />
+<h3><span class="label label-default">Contacts</span></h3>
+<div class="list-group">
+    @Html.ActionLink("View", "ContactManagement", "Home", null, new { @class = "list-group-item" })
+    <a href="@Url.Action("AddContact", "Admin")" class="list-group-item">
+        <span class="glyphicon glyphicon-plus"></span>
+    </a>
+</div>
+<br />
+<h3><span class="label label-default">Contacts</span></h3>
+<div class="list-group">
+    @Html.ActionLink("Send Email to Contact Group", "Email", "Admin", null, new { @class = "list-group-item" })
+</div>

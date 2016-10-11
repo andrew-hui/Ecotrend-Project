@@ -1,0 +1,95 @@
+﻿@model EcoTrend_Industry_Project.ViewModels.SupplierDetailsVM
+
+@{
+    ViewBag.Title = "Supplier Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br /><br />
+<label>Supplier</label><br />
+<p>@Html.DisplayFor(model => model.Name)</p>
+<label>ID:</label><br />
+<p>@Html.DisplayFor(model => model.SupplierID)</p>
+<label>Branch:</label><br />
+<p>@Html.DisplayFor(model => model.Email)</p>
+<label>Account Status:</label><br />
+@if (Model.LockedOut != null)
+            {
+    @Html.Raw("<p style='color:red;'>Disabled</p>");
+            }
+            else
+            {
+    @Html.Raw("<p style='color:green;'>Enabled</p>");
+            }
+<br />
+<h2>Flyer History For @Html.DisplayFor(model => model.Name)</h2>
+<table class="table">
+    @foreach (var item in Model.EmailHistory)
+    {
+        <tr>
+            <th>
+                @Html.DisplayNameFor(modelItem => item.EmailID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => item.Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => item.Approved)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => item.DateCreated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(modelItem => item.DateSent)
+            </th>
+            <th></th>
+        </tr>
+        break;
+    }
+    @foreach (var item in Model.EmailHistory)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            @if (item.Approved == true)
+            {
+                <td style="color: green;">
+                    Approved
+                </td>
+            }
+            else
+            {
+                <td style="color: red;">
+                    Not Approved
+                </td>
+            }
+
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            @if (item.DateSent != null)
+            {
+                <td style="color: green;">@Html.DisplayFor(modelItem => item.DateSent)</td>
+            }
+            else
+            {
+                <td style="color: red;">Not Sent</td>
+            }
+            <td>
+                <a href="../Admin/EditEmail?emailID=@Html.DisplayFor(modelItem => item.EmailID)">Edit <span class="glyphicon glyphicon-pencil" title="Edit"></span></a> |
+                <a href="../Admin/ViewEmail?emailID=@Html.DisplayFor(modelItem => item.EmailID)">View <span class="glyphicon glyphicon-list-alt" title="View"></span></a> |
+                <a href="../Admin/DeleteEmail?supplierID=@Html.DisplayFor(model => model.SupplierID)&emailID=@Html.DisplayFor(modelItem => item.EmailID)">Delete <span class="glyphicon glyphicon-remove-sign" title="Delete"></span></a>
+            </td>
+        </tr>
+    }
+    @foreach (var item in Model.EmailHistory)
+    {
+        <tr><td><a href="../Admin/CreateEmail?supplierID=@Html.DisplayFor(model => model.SupplierID)&emailID=@Html.DisplayFor(modelItem => item.EmailID)">Add Flyer <span class="glyphicon glyphicon-plus-sign" title="Add Flyer"></span></a></td></tr>
+        break;
+    }
+
+</table>
+<br />

@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Admin Privileges";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Admin Privileges</h2>
+
+<hr />
+<h3><span class="label label-default">Users and Roles</span></h3>
+<div class="list-group">
+    @Html.ActionLink("Add a role", "AddRole", "Admin", new { @class = "list-group-item" })
+    @Html.ActionLink("Add user to a role", "AddUserToRole", "Admin", new { @class = "list-group-item" })
+</div>
+<br />
+<h3><span class="label label-default">Sales Representatives</span></h3>
+<div class="list-group">
+ 
+    @Html.ActionLink("View", "ListSalesReps", "Admin", new { @class = "list-group-item"})
+    <span class="list-group-item"><a href="../Admin/AddSalesRep"><span class="glyphicon glyphicon-plus"></span> Add Sale Rep</a></span> 
+ 
+</div>
+<br />
+<h3><span class="label label-default">Logs</span></h3>
+<div class="list-group">
+
+    @Html.ActionLink("View", "GetAllLogs", "Admin", new { @class = "list-group-item" })
+</div>
+<br />
+<h3><span class="label label-default">Contacts</span></h3>
+<div class="list-group">
+    @Html.ActionLink("View", "ContactManagement", "Home", null, new { @class = "list-group-item" })
+    <span class="list-group-item"><a href="../SalesRep/AddContact"><span class="glyphicon glyphicon-plus"></span> Add Contact</a></span> 
+ 
+</div>
+<br />
+<h3><span class="label label-default">Group Email</span></h3>
+<div class="list-group">
+    @Html.ActionLink("Email All Subscribed Ecotrend Customers", "EmailAllSubscribed", "Admin", null, new { @class = "list-group-item" })
+    @Html.ActionLink("Email All Subscribed Customers on a Contact List", "EmailBySalesRep", "Admin", null, new { @class = "list-group-item" })
+</div>

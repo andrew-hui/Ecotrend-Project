@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Sales Rep Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<br /><br />
+<label>Salesperson:</label><br />
+<p>Anna Harrison-Pokora</p>
+<label>ID:</label><br />
+<p>975</p>
+<label>Branch:</label><br />
+<p>Argentina</p>
+
+<br />
+<h2>Contacts For Anna Harrison-Pokora</h2>
+<table class="table table-hover">
+    <tr>
+        <th>ID Number</th>
+        <th>Company</th>
+        <th>Contact</th>
+        <th>Branch</th>
+        <th>Phone Number</th>
+    </tr>
+    <tr>
+        <td>0101350</td>
+        <td>Club Organic</td>
+        <td>Diane Vu</td>
+        <td>Canada</td>
+        <th>604-465-5844</th>
+    </tr>
+    <tr>
+        <td>0546565</td>
+        <td>Essential Elements</td>
+        <td>Marianne Shaw</td>
+        <td>Canada</td>
+        <th>778-996-4456</th>
+    </tr>
+    <tr>
+        <td>0545655</td>
+        <td>Eternal Giving Inc.</td>
+        <td>Nancy Barrymore</td>
+        <td>Canada</td>
+        <th>305-205-4565</th>
+    </tr>
+</table>

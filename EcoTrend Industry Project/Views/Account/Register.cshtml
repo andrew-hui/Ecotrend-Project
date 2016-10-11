@@ -1,0 +1,176 @@
+﻿@model EcoTrend_Industry_Project.ViewModels.RegisteredUser
+
+@{
+    ViewBag.Title = "Create Accounts";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Create Accounts</h2>
+
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "registrationForm", @data_parsley_validate = "data-parsley-validate" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Account Type</label>
+
+            <div class="col-md-6">
+                <div class="radio">
+                    <label><input type="radio" id="salesrep" name="role" value="salesrep" checked="checked" required data-parsley-errors-messages-disabled />Sales Representative</label>
+                </div>
+                <div class="radio">
+                    <label><input type="radio" id="supplier" name="role" value="supplier" required data-parsley-errors-messages-disabled />Supplier</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Username</label>
+            <div class="col-md-6">
+                <input type="text" id="UserName" name="UserName" class="form-control" required data-parsley-errors-messages-disabled data-parsley-pattern="^[0-9]*$" placeholder="Example: 549"/>
+            </div>
+        </div>
+
+        <div id="salesRep-div">
+            <div class="form-group">
+                <label class="control-label col-md-2">Branch</label>
+                <div class="col-md-6">
+                    <input type="text" id="branch" name="branch" class="form-control" data-parsley-required="true" data-parsley-errors-messages-disabled />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Sales Rep. Full Name</label>
+                <div class="col-md-6">
+                    <input type="text" id="repName" name="repName" class="form-control" data-parsley-required="true" data-parsley-errors-messages-disabled />
+                </div>
+            </div>
+        </div>
+
+        <div id="supplier-div" style="display:none">
+            <div class="form-group">
+                <label class="control-label col-md-2">Company Name</label>
+                <div class="col-md-6">
+                    <input type="text" id="supplierName" name="supplierName" class="form-control" data-parsley-required="false" data-parsley-errors-messages-disabled />
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-6">
+                <input type="password" id="Password" name="Password" class="form-control" required data-parsley-errors-messages-disabled data-parsley-minlength="6" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Confirm Password</label>
+            <div class="col-md-6">
+                <input type="password" id="ConfirmPassword" name="ConfirmPassword" class="form-control" required data-parsley-errors-messages-disabled data-parsley-minlength="6" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label">Email</label>
+            <div class="col-md-6">
+                <input type="email" id="email" name="email" class="form-control" required data-parsley-errors-messages-disabled data-parsley-minlength="6" />
+            </div>
+        </div>
+
+
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create Account" class="btn btn-primary" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="text-align:center">
+                @if (ViewBag.Success != null)
+                {
+                    <span class="alert alert-success">
+                        <span class="fa fa-check-circle"></span>
+                        @ViewBag.Success
+                    </span>
+                }
+                else if (ViewBag.Error != null)
+                {
+                    <span class="alert alert-danger">
+                        <span class="fa fa-times-circle"></span>
+                        @ViewBag.Error
+                    </span>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/scripts/jquery-2.2.3.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+@section script{
+    <script>
+        $(document).ready(function () {
+            $('input[type="radio"]').click(function () {
+                username = document.getElementById('UserName');
+                supplierName = document.getElementById('supplierName');
+                if ($(this).attr('id') == 'salesrep') {
+                    $('#salesRep-div').show();
+                    branch = document.getElementById('branch');
+                    repName = document.getElementById('repName');
+                    if(username.hasAttribute('placeholder')){
+                        username.setAttribute('placeholder', 'Example: 594');
+                    }
+                    if (username.hasAttribute('data-parsley-pattern')) {
+                        $("#UserName").removeAttr('data-parsley-pattern');
+                        username.setAttribute('data-parsley-pattern', '^[0-9]*$');
+                    }
+                    if (!(branch.hasAttribute('data-parsley-required'))) {
+                        branch.setAttribute('data-parsley-required', 'true');
+                    }
+                    if (!(repName.hasAttribute('data-parsley-required'))) {
+                        repName.setAttribute('data-parsley-required', 'true');
+                    }
+                    if ($('#supplierName').attr('data-parsley-required') == 'true') {
+                        supplierName.setAttribute('data-parsley-required', 'false');
+                    }
+                    if (document.getElementById('supplier-div').style.display == 'block') {
+                        document.getElementById("supplier-div").style.display = "none";
+                    }
+                }
+                else {
+                    $('#salesRep-div').hide();
+                }
+                if ($(this).attr('id') == 'supplier') {
+                    if(username.hasAttribute('placeholder')){
+                        username.setAttribute('placeholder', 'Example: WholeFoods')
+                    }
+                    if (username.hasAttribute('data-parsley-pattern')) {
+                        $("#UserName").removeAttr('data-parsley-pattern');
+                        username.setAttribute('data-parsley-pattern', '^[a-zA-Z0-9]*$');
+                    }
+                    if (document.getElementById('supplier-div').style.display == 'none') {
+                        document.getElementById("supplier-div").style.display = "block";
+                    }
+                    $('#branch').removeAttr('data-parsley-required');
+                    $('#repName').removeAttr('data-parsley-required');
+                    if ($('#supplierName').attr('data-parsley-required') == 'false') {
+                        supplierName.setAttribute('data-parsley-required', 'true');
+                    }
+
+                }
+                else {
+                    $('#supplie-div').hide();
+                }
+            });
+        });
+    </script>
+}

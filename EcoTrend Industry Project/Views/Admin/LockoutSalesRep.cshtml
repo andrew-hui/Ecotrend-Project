@@ -1,0 +1,65 @@
+﻿@model IEnumerable<EcoTrend_Industry_Project.ViewModels.SalesRepsLockoutVM>
+
+@{
+    ViewBag.Title = "Sales Representative Lockout Area";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+<hr />
+<div style="overflow-x:auto;">
+    <table id="table_id" class="display cell-border">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Branch)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    @if (item.Date != null)
+                {
+                        @Html.Raw("<td style='color:red;'>Disabled</td>");
+                }
+                else
+                {
+                        @Html.Raw("<td style='color:green;'>Enabled</td>");
+                }
+                    <th>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Branch)
+                    </td>
+                    <td>
+                        @if (item.Date != null)
+                        {
+                            <a href="../Admin/UnlockUser?from=SalesRep&email=@Html.DisplayFor(modelItem => item.Email)">Enable Account<span class="glyphicon toggle-on" title="Enable Account"></span></a>
+                        }
+                        else
+                        {
+                            <a href="../Admin/LockUser?from=SalesRep&email=@Html.DisplayFor(modelItem => item.Email)">Disable Account <span class="glyphicon toggle-off" title="Disable Account"></span></a>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>

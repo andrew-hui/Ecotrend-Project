@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Contact Notes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Contact Management Area</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div style="display: inline-block">
+            </div>
+            <h3>Contact Notes for Susie Barbara</h3>
+            <table class="table table-hover">
+                <tr>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Body</th>
+                    <th>Salesperson</th>
+                </tr>
+                <tr>
+                    <td>Clearwater Natural Foods Order Inquiry</td>
+                    <td>April 20, 2016</td>
+                    <td>There was a missing order that never arrived. We are tracking shipping information to find out more detailed information.</td>
+                    <td>Logged by Richard Brown</td>
+                </tr>
+                <tr>
+                    <td>Natural Foods Order</td>
+                    <td>April 14, 2016</td>
+                    <td>Ordered #2139812, which contains natural food products. Aprox total: $2130.</td>
+                    <td>Logged by Richard Brown</td>
+                </tr>
+            </table>
+            @Html.ActionLink("Add Note", "AddNote", "SalesRep", null, new { @class = "btn btn-default"})
+        </div>
+    </div>
+</div>

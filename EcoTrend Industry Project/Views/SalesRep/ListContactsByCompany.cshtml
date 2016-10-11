@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "Contact Management Area";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            
+            <h2 style="margin-bottom: 20px;">Clearwater Natural Foods</h2> 
+
+            <br />
+            <br />
+
+            <div class="col-md-2">
+                <label for="id_number">ID Number: </label>
+                <p id="id_number">010205</p>
+                <label for="branch">Branch: </label>
+                <p>Branch: BC</p>
+            </div>
+            <div class="col-md-3">
+                <label for="Billing Address: ">Billing Address: </label>
+                <p>735 Clearwater Village Road</p>
+                <p>Clearwater, BC</p>
+                <p>V0E 1N1</p>
+                <p>Canada</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div style="display: inline-block">
+            </div>
+            <table class="table table-hover">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone Number</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td>Janey</td>
+                    <td>Bane</td>
+                    <td>778-610-4545</td>
+                    <td><a href="../SalesRep/EditContact"><span class="glyphicon glyphicon-pencil"></span> Edit Contact</a></td>
+                    <td><a href="../SalesRep/ContactNotes"><span class="glyphicon glyphicon-list-alt"></span> View Notes</a></td>
+                    <td><a href="../SalesRep/AddNote"><span class="glyphicon glyphicon-plus"></span> Add Note</a></td>
+                </tr>
+                <tr>
+                    <td>Paul</td>
+                    <td>Gregens</td>
+                    <td>604-656-4472</td>
+                    <td><a href="../SalesRep/EditContact"><span class="glyphicon glyphicon-pencil"></span> Edit Contact</a></td>
+                    <td><a href="../SalesRep/ContactNotes"><span class="glyphicon glyphicon-list-alt"></span> View Notes</a></td>
+                    <td><a href="../SalesRep/AddNote"><span class="glyphicon glyphicon-plus"></span> Add Note</a></td>
+                </tr>
+                <tr>
+                    <td>Jenny</td>
+                    <td>Paulson</td>
+                    <td>778-635-5456</td>
+                    <td><a href="../SalesRep/EditContact"><span class="glyphicon glyphicon-pencil"></span> Edit Contact</a></td>
+                    <td><a href="../SalesRep/ContactNotes"><span class="glyphicon glyphicon-list-alt"></span> View Notes</a></td>
+                    <td><a href="../SalesRep/AddNote"><span class="glyphicon glyphicon-plus"></span> Add Note</a></td>
+                </tr>
+                <tr style="padding-top: 20px;">
+                    <td>
+                        <a href="@Url.Action("AddContact", "SalesRep")">
+                            <span class="fa fa-user-plus" aria-hidden="true"></span>
+                            Add Contact
+                        </a>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+

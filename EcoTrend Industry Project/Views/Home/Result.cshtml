@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = ViewBag.TabTitle;
+    if (User.IsInRole("admin"))
+    {
+        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+}
+@section style{
+    <style>
+        .result {
+            padding: 50px;
+            text-align: center;
+        }
+    </style>
+}
+
+<div class="result">
+    @{
+        if (ViewBag.TabTitle == "Success")
+        {
+            <span class="alert alert-success">@Html.Raw(ViewBag.Result)</span>
+            <br /><br /><br />
+            
+        }
+        else
+        {
+            <span class="alert alert-danger">@Html.Raw(ViewBag.Result)</span>
+            <br /><br /><br />
+            
+        }
+    }
+</div>

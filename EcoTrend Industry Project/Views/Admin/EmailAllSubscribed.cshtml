@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Email";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    input {
+        max-width: 100%;
+    }
+
+    textarea {
+        max-width: 100%;
+    }
+</style>
+
+<blockquote style="margin-top: 20px; color: red; font-size: 2em; text-align: center;">Attention: This will e-mail all Subscribed Ecotrend Customers</blockquote>
+
+<form>
+    <hr/>
+    <label>Subject</label>
+    <input class="form-control" /><br />
+    <label>Body</label>
+    <textarea class="form-control" style="height:400px"></textarea><br />
+    <input type="submit" value="Send" class="btn btn-primary btn-block" />
+</form>

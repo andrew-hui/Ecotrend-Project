@@ -1,0 +1,86 @@
+﻿
+@model EcoTrend_Industry_Project.ViewModels.Login
+
+@{
+    ViewBag.Title = "Welcome";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+@section style{
+    <style>
+        #myPopoverContent {
+            display: none;
+            float: right;
+        }
+
+        .popover {
+            width: 900px;
+        }
+    </style>
+}
+<div class="loginForm">
+    <div class="formContent form-group">
+        <h1>Login</h1>
+        <hr />
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @data_parsley_validate = "data-parsley-validate" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="text" id="usernameInput" class="form-control input-lg" name="UserName" placeholder="Account ID" required data-parsley-errors-messages-disabled /><br />
+            <input type="password" id="passwordInput" class="form-control input-lg" name="Password" placeholder="Password" required data-parsley-errors-messages-disabled /><br />
+            <input type="submit" id="loginBtn" class="btn btn-lg btn-block" value="Log in" /><br />
+        }
+        <hr />
+        <a ng-href="" data-toggle="popover" data-placement="left" id="test" class="btn btn-default pull-left"><span class="badge"></span>Accounts</a>
+        <a id="forgotPassword" class="pull-right" href="@Url.Action()">Forgot Password?</a>
+    </div>
+
+</div>
+<div class="formBackground">
+</div>
+<div id="myPopoverContent">
+    <table border="1">
+        <tr>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Role</th>
+        </tr>
+        <tr>
+            <td>admin</td>
+            <td>123456789</td>
+            <td>Administrator</td>
+        </tr>
+        <tr>
+            <td>123</td>
+            <td>123456789</td>
+            <td>Sales Representative</td>
+        </tr>
+        <tr>
+            <td>456</td>
+            <td>123456789</td>
+            <td>Sales Representative</td>
+        </tr>
+        <tr>
+            <td>supplier</td>
+            <td>password</td>
+            <td>Supplier</td>
+        </tr>
+    </table>
+</div>
+
+@section script{
+    <script>
+        $(function () {
+            $(".btn").click(function () {
+                $(this).button().delay(360000).queue(function () {
+                    $(this).button('reset');
+                    $(this).dequeue();
+                });
+            });
+        });
+        $('[data-toggle=popover]').popover({
+            content: $('#myPopoverContent').html(),
+            html: true
+        }).click(function () {
+            $(this).popover('show');
+        });
+    </script>
+}

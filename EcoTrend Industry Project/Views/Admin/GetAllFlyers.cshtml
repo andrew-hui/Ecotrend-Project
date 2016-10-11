@@ -1,0 +1,58 @@
+﻿@model IEnumerable<EcoTrend_Industry_Project.ViewModels.SupplierEmailVM>
+
+@{
+    ViewBag.Title = "Flyers";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Flyers</h2>
+<hr />
+<div class="col-md-8">
+    <table id="table_id" class="display cell-border">
+        <thead>
+            <tr>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    E-mail Address
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @{
+                            if (item.approved == true)
+                            {
+                                <span style="color:green">Approved</span>
+                            }
+                            else
+                            {
+                                <span style="color:red">Pending</span>
+                            }
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.email)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("FlyerDetails", "Admin", new { emailId = item.emailID })">
+                            <span class="glyphicon glyphicon-envelope fa-fw"></span>
+                            Email Details
+                        </a>
+                    </td>
+                </tr>
+                            }
+        </tbody>
+    </table>
+</div>

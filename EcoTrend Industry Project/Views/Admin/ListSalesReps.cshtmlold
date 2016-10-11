@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "ListSalesReps";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Lookup Sales Representative</h2>
+<br /><br />
+<label for="employee">Employee Name</label><br />
+<input type="text" name="employee" id="employee" value="Jim Vera" />
+
+<h3>Results:</h3>
+
+<table class="table table-hover">
+    <tr>
+        <th>ID Number</th>
+        <th>Salesperson</th>
+        <th>Branch</th>
+    </tr>
+    <tr>
+        <td><a href="./SalesRepDetails">975</a></td>
+        <td><a href="./SalesRepDetails">Anna Harrison-Pokora</a></td>
+        <td>Argentina</td>
+    </tr>
+    <tr>
+        <td><a href="./SalesRepDetails">605</a></td>
+        <td><a href="./SalesRepDetails">Joanne Brophy</a></td>
+        <td>Canada</td>
+    </tr>
+    <tr>
+        <td><a href="./SalesRepDetails">618</a></td>
+        <td><a href="./SalesRepDetails">Rose Korda</a></td>
+        <td>Canada</td>
+    </tr>
+</table>
